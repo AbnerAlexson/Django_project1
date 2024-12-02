@@ -3,5 +3,7 @@
 {% block title %}Homepage{% endblock %}
 
 {% block body %}
-    <h1>this extend from til/templates/base.html</h1>
+    {% for post in posts %} <!--this loops all the post objects -->
+        <h2>{{post.text}} written at {{post.date}}</h2>
+    {% endfor %}
 {% endblock %}
