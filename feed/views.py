@@ -1,4 +1,4 @@
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 
 from .models import Post
 
@@ -8,3 +8,9 @@ class HomePage(ListView): # this class is to render a template with all the post
     model = Post
     context_object_name = "posts"
     queryset = Post.objects.all().order_by('-id')[0:30] # homepage shows earliest 40 posts
+
+class PostDetailView(DetailView):
+    http_method_names = ["get"]
+    template_name = "feed/detail.html"
+    model = Post
+    context_object_name = "post"
