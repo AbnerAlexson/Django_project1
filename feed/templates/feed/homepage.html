@@ -4,6 +4,26 @@
 
 {% block body %}
     {% for post in posts %} <!--this loops all the post objects -->
-        <h2>{{post.text}} written at {{post.date}}</h2>
+        <div class="max-w-4xl px-10 my-4 py-6 bg-white rounded-lg shadow-md" style="width: 50rem">
+            <div class="flex justify-between items-center">
+                <span class="font-light text-gray-600">{{post.date|date:"F j, Y, g:i:a"}}</span>
+            </div>
+            <div class="mt-2">
+                <p class="mt-2 text-gray-600">{{post.text}}</p>
+            </div>
+            <div class="flex justify-between items-center mt-4">
+                {# TODO add details to post #}
+                <a class="text-blue-600 hover:underline" href="#">
+                    Read more
+                </a>
+                <div>
+                    {# TODO add link to users profile, add user profile icon and into post #}
+                    <a class="flex items-center" href="#">
+                        <img class="mx-4 w-10 h-10 object-cover rounded-full hidden sm:block" src="https://images.unsplash.com/photo-1502980426475-b83966705988?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=373&q=80" alt="avatar">
+                        <h1 class="text-gray-700 font-bold">Khatab wedaa</h1>
+                    </a>
+                </div>
+            </div>
+        </div>
     {% endfor %}
 {% endblock %}
