@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "e3c8ff363ce68b0f2237ed168423eb36303fbe3dd88938b40b3b504ee24c735f"
+            "sha256": "0a2f8952f6ae523ce848ae0e80c6993fbf71b25e64861c46bc87f47af97236e2"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -40,6 +40,15 @@
             "index": "pypi",
             "markers": "python_version >= '3.8'",
             "version": "==65.3.0"
+        },
+        "sorl-thumbnail": {
+            "hashes": [
+                "sha256:191b89c27ecb40b5c2a35549d557d17c4841c6aff439b2e17b938b91eea463b3",
+                "sha256:e3e375013ca3f14bca9f98fe9861153adac3a6ea4af5e9dc3f31cb605df765b5"
+            ],
+            "index": "pypi",
+            "markers": "python_version >= '3.8'",
+            "version": "==12.11.0"
         },
         "sqlparse": {
             "hashes": [
