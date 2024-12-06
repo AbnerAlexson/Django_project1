@@ -1,5 +1,5 @@
 from django.views.generic import ListView, DetailView
-
+from django.views.generic.edit import CreateView
 from .models import Post
 
 class HomePage(ListView): # this class is to render a template with all the post 
@@ -14,3 +14,8 @@ class PostDetailView(DetailView):
     template_name = "feed/detail.html"
     model = Post
     context_object_name = "post"
+
+class CreateNewPost(CreateView):
+    model = Post
+    template_name = "feed/create.html"
+    fields = ['text']
