@@ -26,7 +26,7 @@
             </li>
             {% if request.user.is_authenticated %}
               <li>
-                <a href="{% url 'feed:new_post' %}" class="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-500 hover:text-gray-800">
+                <a href="{% url 'feed:new_post' %}" class="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-500 hover:text-gray-800 js-toggle-modal">
                 <span class="inline-flex items-center justify-center h-12 w-12 text-lg text-gray-400"><i class="bx bx-plus"></i></span>
                 <span class="text-sm font-medium">Create</span>
                 </a>
@@ -58,17 +58,19 @@
 
     <!-- component -->
     {% if request.user.is_authenticated %}
-    <div class="fixed left-0 top-0 flex h-full w-full items-center justify-center bg-black bg-opacity-50 py-10 hidden js-modal">
+    <div class="fixed left-0 top-0 flex h-full w-full items-center justify-center bg-black bg-opacity-50 py-10 js-modal">
       <div class="max-h-full w-full max-w-xl overflow-y-auto sm:rounded-2xl bg-white">
         <div class="w-full">
           <div class="m-8 my-20 max-w-[400px] mx-auto">
             <div class="mb-8">
               <h1 class="mb-4 text-3xl font-extrabold">New Post</h1>
-              <p class="text-gray-600">{# TODO: add ajax form #}</p>
+              <div class="">
+                <textarea class="border-2 border-black-500 my-4 w-full js-post-text" rows="3" placeholder="what's on your mind?" maxlength="240" data-post-url="{% url 'feed:new_post' %}"></textarea>
+              </div>
             </div>
             <div class="space-y-4">
-              <button class="p-3 bg-black rounded-full text-white w-full font-semibold" type="button">Create Post</button>
-              <button class="p-3 bg-white border rounded-full w-full font-semibold">Cancel</button>
+              <button class="p-3 bg-black rounded-full text-white w-full font-semibold js-submit" type="button">Create Post</button>
+              <button class="p-3 bg-white border rounded-full w-full font-semibold js-toggle-modal">Cancel</button>
             </div>
           </div>
         </div>
@@ -76,9 +78,8 @@
     </div>
     {% endif %}
 
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="{% static 'js/main.js' %}"></script>
-
 
 
 </body>
