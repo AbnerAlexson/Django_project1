@@ -67,3 +67,29 @@ $(document).on("click", ".js-toggle-modal", function(e) {
     });
 
 })
+.on("click", ".js-follow", function(e) {
+    e.preventDefault()
+    console.log("I was clicked")
+    const action = $(this).attr("data-action")
+    $.ajax({
+        type: "POST",
+        url: $(this).data("url"),
+        data: {
+            action: action,
+            username: $(this).data("username"),
+        },
+        success: (data) => { 
+            $(".js-follow-text").text(data.wording)
+            if(action == 'follow') {
+                //change to unfollow
+                $(this).attr("data-action", "unfollow")
+            } else {
+                $(this).attr("data-action", "follow")
+            }
+        },
+        error: (error) => {
+            console.warn(error)
+        }
+
+    });
+})
