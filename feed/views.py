@@ -4,6 +4,8 @@ from django.http.response import HttpResponse
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.shortcuts import render
+
 from .models import Post
 
 class HomePage(ListView): # this class is to render a template with all the post 
@@ -34,3 +36,20 @@ class CreateNewPost(LoginRequiredMixin, CreateView):
         obj.author = self.request.user
         obj.save()
         return super().form_valid(form)
+    
+    def post(self, request, *args, **kwargs):
+        
+        post = Post.objects.create(
+            text = request.POST.get("text"), # gets text from ajax
+            author = request.user,
+        )
+
+        return render(
+            request,
+            "includes/post.html", # this is what it is going to render 
+            { # these are context that are needed for the post to show up with the text that we submitted 
+                "post": post, 
+                "show_detail_link": True, # this is the details 
+            },
+            content_type="application/html"
+        )
