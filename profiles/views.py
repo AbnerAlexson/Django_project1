@@ -23,7 +23,7 @@ class ProfileDetailView(DetailView):
         context = super().get_context_data(**kwargs)
         context['total_posts'] = Post.objects.filter(author=user).count() # filters the post by the author
         if self.request.user.is_authenticated:
-            context['you_follow'] = Follower.objects.filter(following=user, followed_by=self.request.user).exists()
+            context['you_follow'] = len(Follower.objects.filter(following=user, followed_by=self.request.user))
         return context
     
 class FollowView(LoginRequiredMixin, View):
